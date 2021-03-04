@@ -16,6 +16,7 @@ import * as ECT from "@whoicd/icd11ect";
 import "@whoicd/icd11ect/style.css";
 import DropDown from "../DropDown/DropDown";
 import axios from "axios";
+import moment from 'moment';
 
 const useStyles = makeStyles({
   table: {
@@ -84,6 +85,12 @@ function TableComponent({
     setPregnancyContributeToDeathValues,
   ] = useState([]);
 
+  const [mannerofDeathValues, setMannerOfDeathValues] = useState([]);
+  const [placeOfOccuranceValues, setPlaceOfOccuranceValues] = useState([]);
+  const [multiPregnancyValues, setMultiPregnancyValues] = useState([]);
+  const [stillBornValues, setStillBornValues] = useState([]);
+
+
   console.log(
     "ICD------------------------------------------------------",
     icdName,
@@ -97,7 +104,11 @@ function TableComponent({
     timeIntervalData4();
     wasDeceasedWomanData();
     deceasedPregnantData();
+    mannerOfDeathDropDown();
     pregnancyContributeToDeathData();
+    placeOfOccuranceData();
+    mulitplePregnancyDropDown();
+    stillBornDropDown();
   }, []);
 
   // Use Effect Function for checking the state of - ICD Code  Search
@@ -277,6 +288,77 @@ function TableComponent({
     setFormData({ ...formData, EmUH7hTE6Mt: value });
   };
 
+
+  //Manner of Death 
+  const mannerOfDeathDropDown = async () => {
+    try {
+      const response = await axios.get(
+        "../../dataElements/bDRjWaLyOep.json?fields=id,name,optionSet[id,name,options[id,name]]"
+      );
+      setMannerOfDeathValues(response?.data?.optionSet?.options);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleMannerOfDeathDropDown = (value) => {
+    setFormData({ ...formData, bDRjWaLyOep: value });
+  };
+
+
+
+  // place of occurance
+  const placeOfOccuranceData = async () => {
+    try {
+      const response = await axios.get(
+        "../../dataElements/u18AxCtbATU.json?fields=id,name,optionSet[id,name,options[id,name]]"
+      );
+      setPlaceOfOccuranceValues(response?.data?.optionSet?.options);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handlePlaceOfOccurance = (value) => {
+    setFormData({ ...formData, u18AxCtbATU: value });
+  };
+
+  // Multiple pregnancy 
+
+  const mulitplePregnancyDropDown = async () => {
+    try {
+      const response = await axios.get(
+        "../../dataElements/cgxWlBA8c61.json?fields=id,name,optionSet[id,name,options[id,name]]"
+      );
+      setMultiPregnancyValues(response?.data?.optionSet?.options);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleMultiplePregnancy = (value) => {
+    setFormData({ ...formData, cgxWlBA8c61: value });
+  };
+
+  //  Stillborn?
+  const stillBornDropDown = async () => {
+    try {
+      const response = await axios.get(
+        "../../dataElements/y5eNtqq1xFv.json?fields=id,name,optionSet[id,name,options[id,name]]"
+      );
+      setStillBornValues(response?.data?.optionSet?.options);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  const handleStillBorn = (value) => {
+    setFormData({ ...formData, y5eNtqq1xFv: value });
+  };
+
+
+
   // Structure of Function **** END
 
   //Pregnancy Change
@@ -375,6 +457,10 @@ function TableComponent({
       wasDeceasedWomanData();
       deceasedPregnantData();
       pregnancyContributeToDeathData();
+      mannerOfDeathDropDown();
+      placeOfOccuranceData();
+      mulitplePregnancyDropDown();
+      stillBornDropDown();
     }
   }, [formData]);
 
@@ -1107,7 +1193,7 @@ function TableComponent({
                 <DropDown
                   placeHolder="Select ICD code ... "
                   data={icdCode}
-                  onChange={() => {}}
+                  onChange={() => { }}
                   selectedValue={
                     icdCode.length > 0 ? formData["mYUCnp4QBsD"] : ""
                   }
@@ -1117,20 +1203,20 @@ function TableComponent({
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell component="th" scope="row" colspan="2" rowspan="1">
+              <TableCell component="th" scope="row" colspan="5" rowspan="1">
                 Other significant conditions contributing to death (time
                 intervals can be included in brackets after the condition)
               </TableCell>
-              <TableCell component="th" scope="row" colspan="3" rowspan="1">
+              <TableCell component="th" scope="row" colspan="2" rowspan="1">
                 <Input
                   className={classes.input}
-                  id="MxJp2CzIsYS"
+                  id="NEo0zOxluzR"
                   onChange={(e) => handleChange(e)}
-                  value={formData["MxJp2CzIsYS"]}
-                  // disabled
+                  value={formData["NEo0zOxluzR"]}
+                // disabled
                 />
               </TableCell>
-              <TableCell component="th" scope="row">
+              {/* <TableCell component="th" scope="row">
                 ICD code for the same
               </TableCell>
               <TableCell component="th" scope="row">
@@ -1139,9 +1225,9 @@ function TableComponent({
                   id="mYUCnp4QBsD"
                   onChange={(e) => handleChange(e)}
                   value={formData["mYUCnp4QBsD"]}
-                  // disabled
+                // disabled
                 />
-              </TableCell>
+              </TableCell> */}
             </TableRow>
             <TableRow>
               <TableCell
@@ -1169,8 +1255,8 @@ function TableComponent({
                       ? "Yes"
                       : formData["xhbB2g4vIuo"] === "" ||
                         formData["xhbB2g4vIuo"] === undefined
-                      ? ""
-                      : "No"
+                        ? ""
+                        : "No"
                   }
                   className=""
                 />
@@ -1230,13 +1316,14 @@ function TableComponent({
                       ? "Yes"
                       : formData["J9wAYdeEuQa"] === "" ||
                         formData["J9wAYdeEuQa"] === undefined
-                      ? ""
-                      : "No"
+                        ? ""
+                        : "No"
                   }
                   className=""
                 />
               </TableCell>
             </TableRow>
+
             {formData["J9wAYdeEuQa"] === "true" ? (
               <TableRow>
                 <TableCell component="th" scope="row" colspan="5" rowspan="1">
@@ -1253,147 +1340,50 @@ function TableComponent({
               </TableRow>
             ) : null}
 
+
+            {/* Manner Of Death Section - Drop Down */}
             <TableRow>
               <TableCell
-                colspan="7"
-                rowspan="1"
+                colspan="5"
                 component="th"
-                className={classes?.labelBold}
               >
                 Manner of death
               </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell component="th">Disease</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="T7BQ3GfqgaZ"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["T7BQ3GfqgaZ"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">&nbsp;</TableCell>
-              <TableCell component="th">Assault</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="tdSBDSnjKzn"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["tdSBDSnjKzn"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">Could not be determined</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="UPFG0qwtggc"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["UPFG0qwtggc"] === "true"}
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell component="th">Accident</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="BeDzrdGIYlw"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["BeDzrdGIYlw"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">&nbsp;</TableCell>
-              <TableCell component="th">Lagal intervention</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="Ly3pBFmVbzw"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["Ly3pBFmVbzw"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">Pending investigation</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="EcEVPuPHuil"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["EcEVPuPHuil"] === "true"}
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell component="th">Internal self-harm</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="IS5RcWC7cER"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["IS5RcWC7cER"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">&nbsp;</TableCell>
-              <TableCell component="th">War</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="ZslJbCjKXf9"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["ZslJbCjKXf9"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">Unknown</TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="W4Lu4ycPQ7q"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["W4Lu4ycPQ7q"] === "true"}
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell component="th" colspan="4" rowspan="1">
-                If external cause or poisoning
-              </TableCell>
-              <TableCell component="th">
-                <CheckBox
-                  className={classes.input}
-                  color="primary"
-                  id="I83YjYy3yw9"
-                  onChange={(e) => handleChange(e)}
-                  checked={formData["I83YjYy3yw9"] === "true"}
-                />
-              </TableCell>
-              <TableCell component="th">Date of injury</TableCell>
-              <TableCell component="th">
-                <TextField
-                  id="kS3AJTCGXxC"
-                  label=""
-                  type="date"
-                  defaultValue=""
-                  onChange={(e) => handleChange(e)}
-                  value={formData["kS3AJTCGXxC"]}
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+              <TableCell
+                component="th"
+                colspan="2"
+              >
+                <DropDown
+                  placeHolder="Select Manner of Death ... "
+                  data={mannerofDeathValues}
+                  onChange={(value) => handleMannerOfDeathDropDown(value)}
+                  selectedValue={formData["bDRjWaLyOep"]}
+                  className="singleSelect"
                 />
               </TableCell>
             </TableRow>
 
-            {formData["I83YjYy3yw9"] === "true" ? (
+
+
+            {formData["bDRjWaLyOep"] === "External cause or poisoning" ? (
               <>
+                <TableRow>
+                  <TableCell component="th" colspan="6" rowspan="1">Date of injury</TableCell>
+                  <TableCell component="th">
+                    <TextField
+                      id="kS3AJTCGXxC"
+                      label=""
+                      type="date"
+                      defaultValue=""
+                      onChange={(e) => handleChange(e)}
+                      value={formData["kS3AJTCGXxC"]}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </TableCell>
+                </TableRow>
                 <TableRow>
                   <TableCell component="th" colspan="6" rowspan="1">
                     Please describe how external cause occurred (If poisoning
@@ -1409,34 +1399,45 @@ function TableComponent({
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component="th" colspan="6" rowspan="1">
+                  <TableCell component="th" colspan="5" rowspan="1">
                     Place of occurance of external cause
                   </TableCell>
-                  <TableCell component="th">
-                    <Input
-                      className={classes.input}
-                      id="u18AxCtbATU"
-                      onChange={(e) => handleChange(e)}
-                      value={formData["u18AxCtbATU"]}
+                  <TableCell component="th" colspan="2">
+                    <DropDown
+                      placeHolder="Select Place of Occurance ... "
+                      data={placeOfOccuranceValues}
+                      onChange={(value) => handlePlaceOfOccurance(value)}
+                      selectedValue={formData["u18AxCtbATU"]}
+                      className="singleSelect"
                     />
                   </TableCell>
+
                 </TableRow>
-                <TableRow>
-                  <TableCell component="th" colspan="6" rowspan="1">
-                    Please specify
-                  </TableCell>
-                  <TableCell component="th">
-                    <Input
-                      className={classes.input}
-                      id="PMxyD0wfs6p"
-                      onChange={(e) => handleChange(e)}
-                      value={formData["PMxyD0wfs6p"]}
-                    />
-                  </TableCell>
-                </TableRow>
+
+
               </>
             ) : null}
 
+            {/* Please specify -- Hide if Place of Occurance value is ---- Other place*/}
+            {formData["u18AxCtbATU"] === "Other place" ? <TableRow>
+              <TableCell component="th" colspan="6" rowspan="1">
+                Please specify
+                  </TableCell>
+              <TableCell component="th">
+                <Input
+                  className={classes.input}
+                  id="PMxyD0wfs6p"
+                  onChange={(e) => handleChange(e)}
+                  value={formData["PMxyD0wfs6p"]}
+                />
+              </TableCell>
+            </TableRow> : null}
+            {/* Manner Of Death Section - Drop Down */}
+
+
+
+
+            {/* Fetal Section */}
             <TableRow>
               <TableCell
                 colspan="7"
@@ -1453,11 +1454,18 @@ function TableComponent({
                   Multiple pregnancy
                 </TableCell>
                 <TableCell component="th">
-                  <Input
+                  {/* <Input
                     className={classes.input}
                     id="cgxWlBA8c61"
                     onChange={(e) => handleChange(e)}
                     value={formData["cgxWlBA8c61"]}
+                  /> */}
+                  <DropDown
+                    placeHolder="Select Multiple Pregnancy Options... "
+                    data={multiPregnancyValues}
+                    onChange={(value) => handleMultiplePregnancy(value)}
+                    selectedValue={formData["cgxWlBA8c61"]}
+                    className="singleSelect"
                   />
                 </TableCell>
               </TableRow>
@@ -1468,11 +1476,18 @@ function TableComponent({
                 Stillborn?
               </TableCell>
               <TableCell component="th">
-                <Input
+                {/* <Input
                   className={classes.input}
                   id="y5eNtqq1xFv"
                   onChange={(e) => handleChange(e)}
                   value={formData["y5eNtqq1xFv"]}
+                /> */}
+                <DropDown
+                  placeHolder="Select Still Born options... "
+                  data={stillBornValues}
+                  onChange={(value) => handleStillBorn(value)}
+                  selectedValue={formData["y5eNtqq1xFv"]}
+                  className="singleSelect"
                 />
               </TableCell>
             </TableRow>
@@ -1500,7 +1515,7 @@ function TableComponent({
             </TableRow>
             <TableRow>
               <TableCell component="th" colspan="4" rowspan="1">
-                {formData["rMXEmkz6UHe"] === "Female"
+                {formData["rMXEmkz6UHe"] === "Female" && moment().diff(formData["XjrUFCJztS7"], 'years', false) > 15 && moment().diff(formData["XjrUFCJztS7"], 'years', false) < 45
                   ? "Number of completed weeks of pregnancy"
                   : ""}
               </TableCell>
@@ -1534,23 +1549,34 @@ function TableComponent({
                 />
               </TableCell>
             </TableRow>
+            <TableRow>
+              <TableCell component="th" colspan="6" rowspan="1">
+                If the death was perinatal, please state conditions of
+                mother that affected the fetus and newborn
+                  </TableCell>
+              <TableCell component="th">
+                <Input
+                  className={classes.input}
+                  id="IoQVPJZaCHZ"
+                  onChange={(e) => handleChange(e)}
+                  value={formData["IoQVPJZaCHZ"]}
+                />
+              </TableCell>
+            </TableRow>
 
-            {formData["rMXEmkz6UHe"] === "Female" ? (
+            {formData["rMXEmkz6UHe"] === "Female" && moment().diff(formData["XjrUFCJztS7"], 'years', false) > 15 && moment().diff(formData["XjrUFCJztS7"], 'years', false) < 45 ? (
               <>
                 <TableRow>
-                  <TableCell component="th" colspan="6" rowspan="1">
-                    If the death was perinatal, please state conditions of
-                    mother that affected the fetus and newborn
-                  </TableCell>
-                  <TableCell component="th">
-                    <Input
-                      className={classes.input}
-                      id="IoQVPJZaCHZ"
-                      onChange={(e) => handleChange(e)}
-                      value={formData["IoQVPJZaCHZ"]}
-                    />
-                  </TableCell>
+                  <TableCell
+                    colspan="7"
+                    rowspan="1"
+                    component="th"
+                    className={classes?.labelBold}
+                  >
+                    Maternal Death
+              </TableCell>
                 </TableRow>
+
                 {/* These are new 3 Drop Down */}
                 {/* OptionSet Id -- j7SmbDDwjz1 */}
                 <TableRow>

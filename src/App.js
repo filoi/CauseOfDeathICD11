@@ -77,7 +77,7 @@ function App() {
   }
 
   async function postData() {
-    console.log( "---::: Form Data:: CREATE ::: ---", formData);
+    console.log("---::: Form Data:: CREATE ::: ---", formData);
     var tei = {
       trackedEntityType: "MCPQUTHX1Ze",
       orgUnit: selectedOrgnisationUnits[0].id,
@@ -176,6 +176,10 @@ function App() {
                   dataElement: "mYUCnp4QBsD",
                   value: formData["mYUCnp4QBsD"],
                 },
+                {
+                  dataElement: "NEo0zOxluzR",
+                  value: formData["NEo0zOxluzR"],
+                },
                 //Medical Data
 
                 // Other medical data
@@ -203,46 +207,8 @@ function App() {
 
                 // Manner of death
                 {
-                  dataElement: "T7BQ3GfqgaZ",
-                  value: formData["T7BQ3GfqgaZ"],
-                },
-                {
-                  dataElement: "BeDzrdGIYlw",
-                  value: formData["BeDzrdGIYlw"],
-                },
-                {
-                  dataElement: "IS5RcWC7cER",
-                  value: formData["IS5RcWC7cER"],
-                },
-
-                {
-                  dataElement: "tdSBDSnjKzn",
-                  value: formData["tdSBDSnjKzn"],
-                },
-                {
-                  dataElement: "Ly3pBFmVbzw",
-                  value: formData["Ly3pBFmVbzw"],
-                },
-                {
-                  dataElement: "ZslJbCjKXf9",
-                  value: formData["ZslJbCjKXf9"],
-                },
-                {
-                  dataElement: "I83YjYy3yw9",
-                  value: formData["I83YjYy3yw9"],
-                },
-
-                {
-                  dataElement: "UPFG0qwtggc",
-                  value: formData["UPFG0qwtggc"],
-                },
-                {
-                  dataElement: "EcEVPuPHuil",
-                  value: formData["EcEVPuPHuil"],
-                },
-                {
-                  dataElement: "W4Lu4ycPQ7q",
-                  value: formData["W4Lu4ycPQ7q"],
+                  dataElement: "bDRjWaLyOep",
+                  value: formData["bDRjWaLyOep"],
                 },
                 {
                   dataElement: "kS3AJTCGXxC",
@@ -449,6 +415,10 @@ function App() {
                   dataElement: "mYUCnp4QBsD",
                   value: formData["mYUCnp4QBsD"],
                 },
+                {
+                  dataElement: "NEo0zOxluzR",
+                  value: formData["NEo0zOxluzR"],
+                },
                 //Medical Data
 
                 // Other medical data
@@ -476,46 +446,8 @@ function App() {
 
                 // Manner of death
                 {
-                  dataElement: "T7BQ3GfqgaZ",
-                  value: formData["T7BQ3GfqgaZ"],
-                },
-                {
-                  dataElement: "BeDzrdGIYlw",
-                  value: formData["BeDzrdGIYlw"],
-                },
-                {
-                  dataElement: "IS5RcWC7cER",
-                  value: formData["IS5RcWC7cER"],
-                },
-
-                {
-                  dataElement: "tdSBDSnjKzn",
-                  value: formData["tdSBDSnjKzn"],
-                },
-                {
-                  dataElement: "Ly3pBFmVbzw",
-                  value: formData["Ly3pBFmVbzw"],
-                },
-                {
-                  dataElement: "ZslJbCjKXf9",
-                  value: formData["ZslJbCjKXf9"],
-                },
-                {
-                  dataElement: "I83YjYy3yw9",
-                  value: formData["I83YjYy3yw9"],
-                },
-
-                {
-                  dataElement: "UPFG0qwtggc",
-                  value: formData["UPFG0qwtggc"],
-                },
-                {
-                  dataElement: "EcEVPuPHuil",
-                  value: formData["EcEVPuPHuil"],
-                },
-                {
-                  dataElement: "W4Lu4ycPQ7q",
-                  value: formData["W4Lu4ycPQ7q"],
+                  dataElement: "bDRjWaLyOep",
+                  value: formData["bDRjWaLyOep"],
                 },
                 {
                   dataElement: "kS3AJTCGXxC",
@@ -740,6 +672,8 @@ function App() {
       MxJp2CzIsYS: lineItemEnrollmentValue(teiObj.enrollments, "MxJp2CzIsYS"),
 
       mYUCnp4QBsD: lineItemEnrollmentValue(teiObj.enrollments, "mYUCnp4QBsD"),
+      
+      NEo0zOxluzR: lineItemEnrollmentValue(teiObj.enrollments, "NEo0zOxluzR"),
 
       //Medical Data
 
@@ -759,25 +693,7 @@ function App() {
 
       // Manner of death
 
-      T7BQ3GfqgaZ: lineItemEnrollmentValue(teiObj.enrollments, "T7BQ3GfqgaZ"),
-
-      BeDzrdGIYlw: lineItemEnrollmentValue(teiObj.enrollments, "BeDzrdGIYlw"),
-
-      IS5RcWC7cER: lineItemEnrollmentValue(teiObj.enrollments, "IS5RcWC7cER"),
-
-      tdSBDSnjKzn: lineItemEnrollmentValue(teiObj.enrollments, "tdSBDSnjKzn"),
-
-      Ly3pBFmVbzw: lineItemEnrollmentValue(teiObj.enrollments, "Ly3pBFmVbzw"),
-
-      ZslJbCjKXf9: lineItemEnrollmentValue(teiObj.enrollments, "ZslJbCjKXf9"),
-
-      I83YjYy3yw9: lineItemEnrollmentValue(teiObj.enrollments, "I83YjYy3yw9"),
-
-      UPFG0qwtggc: lineItemEnrollmentValue(teiObj.enrollments, "UPFG0qwtggc"),
-
-      EcEVPuPHuil: lineItemEnrollmentValue(teiObj.enrollments, "EcEVPuPHuil"),
-
-      W4Lu4ycPQ7q: lineItemEnrollmentValue(teiObj.enrollments, "W4Lu4ycPQ7q"),
+      bDRjWaLyOep: lineItemEnrollmentValue(teiObj.enrollments, "bDRjWaLyOep"),
 
       kS3AJTCGXxC: lineItemEnrollmentValue(teiObj.enrollments, "kS3AJTCGXxC"),
 
@@ -1021,13 +937,13 @@ function App() {
               }}
             />
           ) : (
-            <Button
-              text="Submit"
-              onClick={() => {
-                postData();
-              }}
-            />
-          )}
+              <Button
+                text="Submit"
+                onClick={() => {
+                  postData();
+                }}
+              />
+            )}
           <Button
             text="Cancel"
             onClick={() => {
