@@ -1,0 +1,156 @@
+.main {
+  display: flex;
+
+  flex-direction: row;
+  padding: 25px;
+}
+.main-left {
+  width: 90%;
+}
+
+.organisationUnit-tree {
+  max-height: 500px;
+  overflow: auto;
+}
+
+/* .main-right {
+  
+} */
+
+.create-event-btn {
+  height: 100% !important;
+  background: rgb(44, 102, 147) !important;
+  max-height: 100px !important;
+}
+
+.main-heading {
+  margin: 5px;
+  padding: 10px;
+  background: rgb(44, 102, 147);
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.select {
+  padding: 10px 0;
+}
+
+.tranfer-box {
+  padding: 10px 20px;
+}
+
+.button {
+  width: 100%;
+  background: #3f51b5 !important;
+  padding: 10px 20px;
+}
+
+.table_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #3f51b5;
+}
+
+.table_heading_title {
+  font-weight: 600;
+  color: white;
+}
+
+.back-btn {
+  width: 80px;
+  background: #ffffff !important;
+  color: black !important;
+}
+
+.content-container {
+  z-index: 0 !important;
+}
+
+.active {
+  background-color: lightgrey !important;
+}
+
+.MuiInput-input {
+  text-align: center !important;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Button Section */
+.button-Section {
+  text-align: center;
+  padding: 20px;
+}
+
+.button-Section > button {
+  margin: 10px;
+  width: 100px;
+}
+
+/* Table Section */
+#tableSection {
+  display: none;
+}
+
+
+.tableBtn {
+  margin-right: 10px;
+}
+
+.btn-td {
+  display: flex;
+}
+
+.svg-0 {
+  height: 24px;
+  width: 24px;
+}
+
+.singleSelect{
+  min-width: 172px;
+}
+
+.stateUnderLyingCode{
+  min-width: 587px;
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "name": "cause-of-death-ICD11",
+  "description": "Cause of Death - ICD11",
+  "icons": { "16": "logo.png", "48": "logo.png", "128": "logo.png" },
+  "developer": { "url": "", "name": "Vicky", "company": "Filoi", "email": "" },
+  "activities": {
+    "dhis": { "href": "", "namespace": null }
+  },
+  "folderName": null,
+  "baseUrl": null,
+  "launchUrl": "/cause-of-death-ICD11/index.html",
+  "key": null,
+  "launch_path": "index.html",
+  "installs_allowed_from": null,
+  "default_locale": "en"
+}

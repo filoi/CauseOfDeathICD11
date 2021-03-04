@@ -1,0 +1,9 @@
+http://172.104.45.26:8128/ICD11/api/trackedEntityInstances.json?ou=m0BVHQ1k19F&program=l7yNHuZs4io
+
+http://172.104.45.26:8128/dhis235/api/trackedEntityInstances.json?ou=m0BVHQ1k19F&program=l7yNHuZs4io&fields=*
+
+
+
+http://172.104.45.26:8128/dhis235/api/trackedEntityInstances/query.json?ou=m0BVHQ1k19F&ouMode=SELECTED&&order=created:desc&program=l7yNHuZs4io&pageSize=50&page=1&totalPages=false
+
+http://172.104.45.26:8128/dhis235/api/trackedEntityInstances/imW1CmpXTVe.json?program=l7yNHuZs4io&fields=*
